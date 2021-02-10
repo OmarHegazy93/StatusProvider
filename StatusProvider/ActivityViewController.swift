@@ -17,7 +17,7 @@ class ActivityViewController: UIViewController, StatusController {
         
         title = "Loading"
         
-        let status = Status(isLoading: true, description: "Lädt…")
+        let status = StatusObject(isLoading: true, description: "Lädt…")
         
         show(status: status)
     }

@@ -17,9 +17,9 @@ class ErrorViewController: UIViewController {
         
         title = "Error"
         
-        let simpleLoading = Status.simpleLoading
+        let simpleLoading = StatusObject.simpleLoading
         
-        let status = Status(title: "Error", description: "Oh... fu**", actionTitle: "Retry 🚀") {
+        let status = StatusObject(title: "Error", description: "Oh... fu**", actionTitle: "Retry 🚀") {
             self.show(status: simpleLoading)
         }
         

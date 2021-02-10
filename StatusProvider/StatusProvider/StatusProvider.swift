@@ -13,6 +13,7 @@ public protocol StatusModel {
     var description: String?    { get }
     var actionTitle: String?    { get }
     var image: UIImage?         { get }
+    var isFlipped: Bool?         { get }
     var action: (() -> Void)?   { get }
 }
 
@@ -38,31 +39,43 @@ extension StatusModel {
         return nil
     }
     
+    public var isFlipped: Bool? {
+        return false
+    }
+    
     public var action: (() -> Void)? {
         return nil
     }
     
 }
 
-public struct Status: StatusModel {
+public struct StatusObject: StatusModel {
     public let isLoading: Bool
     public let title: String?
     public let description: String?
     public let actionTitle: String?
     public let image: UIImage?
+    public let isFlipped: Bool?
     public let action: (() -> Void)?
     
-    public init(isLoading: Bool = false, title: String? = nil, description: String? = nil, actionTitle: String? = nil, image: UIImage? = nil, action: (() -> Void)? = nil) {
+    public init(isLoading: Bool = false,
+                title: String? = nil,
+                description: String? = nil,
+                actionTitle: String? = nil,
+                image: UIImage? = nil,
+                isFlipped: Bool = false,
+                action: (() -> Void)? = nil) {
         self.isLoading = isLoading
         self.title = title
         self.description = description
         self.actionTitle = actionTitle
         self.image = image
+        self.isFlipped = isFlipped
         self.action = action
     }
     
-    public static var simpleLoading: Status {
-        return Status(isLoading: true)
+    public static var simpleLoading: StatusObject {
+        return StatusObject(isLoading: true)
     }
 }
 
@@ -93,6 +106,8 @@ extension StatusController {
         guard let sv = statusView else { return }
         sv.status = status
         onView.statusContainerView = sv.view
+        onView.statusContainerView?.transform = CGAffineTransform(scaleX: sv.status?.isFlipped == true ? -1 : 1, y: 1)
+
     }
 }
 

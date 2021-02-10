@@ -17,7 +17,7 @@ class EmptyViewController: UIViewController, StatusController {
         
         title = "Empty"
         
-        let status = Status(title: "no Data", description: "No data available.💣", actionTitle: "Create ⭐️", image: UIImage(named: "placeholder_instagram")) {
+        let status = StatusObject(title: "no Data", description: "No data available.💣", actionTitle: "Create ⭐️", image: UIImage(named: "placeholder_instagram")) {
             self.hideStatus()
         }    
         
